@@ -1,19 +1,9 @@
-"""
-StudySync -- Session Scorer (Ticket 1, Tinker 1B).
-
-TICKET: apply_streak_bonus() works but shouldn't live here -- it belongs in
-the shared scoring_helpers module. session_rating() has no test coverage,
-and neither function has been checked against bad input.
-
-1. Write a pytest test for session_rating() BEFORE touching anything broken.
-2. Move apply_streak_bonus() into scoring_helpers.py and fix the import here.
-3. Find 2-3 "breaker" inputs for session_rating() and decide if they need handling.
-"""
 from scoring_helpers import apply_streak_bonus
 
 
 def session_rating(combined_score: int) -> str:
-    """Rate a study session from its combined minutes+focus score. Correct and tested."""
+    """Rate a study session from its combined minutes+focus score."""
+    
     if combined_score >= 90:
         return "Great"
     if combined_score >= 80:
@@ -45,6 +35,12 @@ def run_demo():
         boosted = apply_streak_bonus(raw, streak)
         rating = session_rating(boosted)
         print(f"Raw: {raw} -> Boosted: {boosted} -> Rating: {rating}")
+        print("******** Test -5 ******** ")
+        print(session_rating(-5))
+        print("******** Test 120 ********")
+        print(session_rating(120))
+        print("******** Test 87.5 ********")
+        print(session_rating(87.5))
 
 
 if __name__ == "__main__":
